@@ -1,0 +1,36 @@
+<h1 xmlns="http://www.w3.org/1999/html">Welcome!</h1>
+
+<!--One way data binding-->
+
+<div class="play-container">
+  <p>You'ev clicked <span (click)="counterClick()">this</span> {{clickCounter}} times.</p>
+</div>
+
+
+<!--Two way data binding-->
+
+<div class="play-container">
+  <div>
+    <label>
+      <input type="text" [(ngModel)]="name" >
+    </label>
+    <br/>
+    <p>You said : <strong> {{name}} </strong></p>
+  </div>
+</div>
+
+
+<!--<div class="play-container" [style.background-color]="clickCounter > 4 ? 'lightgray':'blue' ">-->
+<div class="play-container" [ngStyle]="{
+  'background-color': clickCounter > 4 ? 'brown':'lightgray',
+  'border':           clickCounter > 4 ? '4px solid black':'none'
+}">
+
+  <ng-template [ngIf]="clickCounter > 4" [ngIfElse]="none" >
+    <p>The click counter <strong>IS GREATER</strong> than 4.</p>
+  </ng-template>
+  <ng-template #none>
+    <p>The click counter <strong>IS LESS</strong> than 4.</p>
+  </ng-template>
+
+</div>
